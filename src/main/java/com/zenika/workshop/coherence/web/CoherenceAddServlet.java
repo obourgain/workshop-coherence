@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
 
 import com.zenika.workshop.coherence.model.Person;
@@ -23,15 +22,13 @@ public class CoherenceAddServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String lastName = req.getParameter("lastName");
 		String firstName = req.getParameter("firstName");
-
-		if (StringUtils.isEmpty(firstName) && StringUtils.isEmpty(lastName)) {
-			resp.getOutputStream().println("indiquer lastName ou firstName");
-		}
+		int age = Integer.parseInt(req.getParameter("age"));
 
 		Person person = new Person();
 		person.setFirstName(firstName);
 		person.setLastName(lastName);
 		person.setModificationDate(new DateTime());
+		person.setAge(age);
 		PersonService.getInstance().save(person);
 		resp.getOutputStream().println("added " + person);
 

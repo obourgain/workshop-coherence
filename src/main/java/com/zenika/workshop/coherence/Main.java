@@ -6,6 +6,7 @@ import org.eclipse.jetty.servlet.ServletHolder;
 
 import com.zenika.workshop.coherence.web.CoherenceAddServlet;
 import com.zenika.workshop.coherence.web.CoherenceAggregatorServlet;
+import com.zenika.workshop.coherence.web.CoherenceProcessServlet;
 import com.zenika.workshop.coherence.web.CoherenceSearchServlet;
 
 /**
@@ -24,6 +25,7 @@ public class Main {
 		context.addServlet(new ServletHolder(new CoherenceAddServlet()), "/add/*");
 		context.addServlet(new ServletHolder(new CoherenceSearchServlet()), "/search/*");
 		context.addServlet(new ServletHolder(new CoherenceAggregatorServlet()), "/aggregate/*");
+		context.addServlet(new ServletHolder(new CoherenceProcessServlet()), "/process/*");
 
 		server.start();
 		server.join();
